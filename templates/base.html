@@ -24,6 +24,7 @@
     {% include "components/_footer.html" %}
 
     <!-- Script de recarga automática para desarrollo -->
-    {% include "django_browser_reload/reload_script.html" %}
+    {% load django_browser_reload %}
+    {% django_browser_reload_script %}
 </body>
 </html>
