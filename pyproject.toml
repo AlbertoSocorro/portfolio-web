@@ -1,0 +1,15 @@
+[tool.ruff]
+# Limitar la longitud de línea a 88 (estándar de Black) o 100
+line-length = 100
+
+# Excluir carpetas que no queremos formatear (como entornos virtuales o migraciones)
+exclude = [
+    ".venv",
+    ".git",
+    "migrations",
+    "__pycache__",
+]
+
+[tool.ruff.lint]
+# Seleccionar reglas base y organizador de imports (I)
+select = ["E", "F", "I"]
