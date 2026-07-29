@@ -1,0 +1,32 @@
+<div id="contacto-form-wrapper">
+    {% if enviado %}
+        <div class="p-6 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
+            <h3 class="text-lg font-bold text-emerald-800">¡Mensaje enviado con éxito!</h3>
+            <p class="mt-2 text-sm text-emerald-600">Gracias por contactar conmigo. Te responderé lo antes posible.</p>
+        </div>
+    {% else %}
+        <form hx-post="{% url 'portfolio:contacto' %}" hx-target="#contacto-form-wrapper" hx-swap="outerHTML" class="space-y-4">
+            {% csrf_token %}
+            
+            <div>
+                <label class="block text-sm font-medium text-slate-700">Tu Nombre</label>
+                {{ form.nombre }}
+                {{ form.nombre.errors }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700">Tu Correo Electrónico</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700">Mensaje</label>
+                {{ form.mensaje }}
+                {{ form.mensaje.errors }}
+            </div>
+            
+            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors shadow-sm">
+                Enviar Mensaje
+            </button>
+        </form>
+    {% endif %}
+</div>
