@@ -25,3 +25,17 @@ def portfolio_home(request):
     }
 
     return render(request, "portfolio/home.html", context)
+
+def filtrar_proyectos(request):
+    tech_slug = request.GET.get("tech")
+
+    if tech_slug and tech_slug != "todos":
+        proyectos = Proyecto.objects.filter(publicado=True, tecnologias__slug=tech_slug).prefetch_related("tecnologias")
+    else:
+        proyectos = Proyecto.objects.filter(publicado=True).prefetch_related("tecnologias")
+
+    context = {
+        "proyectos": proyectos
+    }
+
+    return render(request, "components/_grid_proyectos.html", context)

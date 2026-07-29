@@ -55,20 +55,32 @@
 
     <!-- Sección Proyectos -->
     <section id="proyectos" class="py-16 border-t border-slate-200">
-        <div class="flex items-center justify-between mb-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Proyectos Destacados</h2>
+            
+            <!-- Botones de Filtrado con HTMX -->
+            <div class="flex flex-wrap gap-2">
+                <button 
+                    hx-get="{% url 'portfolio:filtrar_proyectos' %}?tech=todos" 
+                    hx-target="#grid-proyectos" 
+                    hx-swap="outerHTML"
+                    class="px-3 py-1.5 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors">
+                    Todos
+                </button>
+                {% for tech in tecnologias %}
+                    <button 
+                        hx-get="{% url 'portfolio:filtrar_proyectos' %}?tech={{ tech.slug }}" 
+                        hx-target="#grid-proyectos" 
+                        hx-swap="outerHTML"
+                        class="px-3 py-1.5 bg-white text-slate-700 border border-slate-200 text-xs font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+                        {{ tech.nombre }}
+                    </button>
+                {% endfor %}
+            </div>
         </div>
 
-        <!-- Grid de proyectos que se actualizará con HTMX más adelante -->
-        <div id="grid-proyectos" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {% for proyecto in proyectos %}
-                {% include 'components/_tarjeta_proyecto.html' with proyecto=proyecto %}
-            {% empty %}
-                <div class="col-span-2 text-center py-12 bg-white rounded-2xl border border-slate-200">
-                    <p class="text-slate-500">No hay proyectos publicados todavía. Añádelos desde el panel de administración.</p>
-                </div>
-            {% endfor %}
-        </div>
+        <!-- Grid inicial de proyectos (incluyendo el componente parcial) -->
+        {% include 'components/_grid_proyectos.html' %}
     </section>
 
     <!-- Sección Contacto -->
