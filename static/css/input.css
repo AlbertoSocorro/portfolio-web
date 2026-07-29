@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+/* Rutas relativas desde este archivo CSS hacia los HTML de Django */
+@source "../../templates/**/*.html";
+@source "../../portfolio/templates/**/*.html";
