@@ -5,14 +5,18 @@ set -o errexit
 # 1. Instalar dependencias de Python
 pip install -r requirements.txt
 
-# 2. Instalar dependencias de Node y compilar Tailwind v4
+# 2. Instalar dependencias de Node y compilar Tailwind
 npm install
-npm run dev:css & # O un script de compilación única si lo prefieres, pero para desarrollo usamos build
+npm run build:css
 
-# 3. Recopilar archivos estáticos de Django (incluyendo Tailwind compilado)
+# 3. Crear explícitamente la carpeta staticfiles
+mkdir -p staticfiles
+
+# 4. Recopilar archivos estáticos de Django
 python manage.py collectstatic --no-input
 
-# 4. Aplicar migraciones a la base de datos
-python manage.py makemigrations
+# 5. Aplicar migraciones automáticamente en producción
 python manage.py migrate
+
+# 6. (Opcional) Poblar la base de datos automáticamente si está vacía
 python manage.py poblar_portfolio
