@@ -59,12 +59,13 @@
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Proyectos Destacados</h2>
             
             <!-- Botones de Filtrado con HTMX -->
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2" id="filtro-botones">
                 <button 
                     hx-get="{% url 'portfolio:filtrar_proyectos' %}?tech=todos" 
                     hx-target="#grid-proyectos" 
                     hx-swap="outerHTML"
-                    class="px-3 py-1.5 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors">
+                    onclick="activarBoton(this)"
+                    class="px-3 py-1.5 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors cursor-pointer">
                     Todos
                 </button>
                 {% for tech in tecnologias %}
@@ -72,7 +73,8 @@
                         hx-get="{% url 'portfolio:filtrar_proyectos' %}?tech={{ tech.slug }}" 
                         hx-target="#grid-proyectos" 
                         hx-swap="outerHTML"
-                        class="px-3 py-1.5 bg-white text-slate-700 border border-slate-200 text-xs font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+                        onclick="activarBoton(this)"
+                        class="px-3 py-1.5 bg-white text-slate-700 border border-slate-200 text-xs font-semibold rounded-lg hover:bg-slate-50 transition-colors cursor-pointer">
                         {{ tech.nombre }}
                     </button>
                 {% endfor %}
@@ -93,4 +95,20 @@
             {% include 'components/_formulario_contacto.html' %}
         </div>
     </section>
+    <script>
+        function activarBoton(elemento) {
+            // Seleccionamos todos los botones dentro del contenedor de filtros
+            const botones = document.querySelectorAll('#filtro-botones button');
+
+            // Restablecemos el estilo por defecto a todos
+            botones.forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white', 'border-transparent');
+                btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200', 'hover:bg-slate-50');
+            });
+
+            // Aplicamos el estilo activo al botón pulsado
+            elemento.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200', 'hover:bg-slate-50');
+            elemento.classList.add('bg-slate-900', 'text-white');
+        }
+    </script>
 {% endblock %}
