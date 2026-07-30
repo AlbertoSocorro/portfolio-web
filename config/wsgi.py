@@ -13,14 +13,4 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
-# Aplicar migraciones y datos automáticamente al arrancar la app en producción
-if os.getenv("RENDER"):
-    from django.core.management import call_command
-
-    try:
-        call_command("migrate", interactive=False)
-        call_command("poblar_portfolio", interactive=False)
-    except Exception as e:
-        print(f"Error al inicializar la base de datos: {e}")
-
 application = get_wsgi_application()

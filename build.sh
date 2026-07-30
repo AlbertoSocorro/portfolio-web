@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Salir inmediatamente si un comando falla
 set -o errexit
 
 # 1. Instalar dependencias de Python
@@ -9,14 +8,14 @@ pip install -r requirements.txt
 npm install
 npm run build:css
 
-# 3. Crear explícitamente la carpeta staticfiles
+# 3. Crear carpetas necesarias
 mkdir -p staticfiles
 
-# 4. Recopilar archivos estáticos de Django
+# 4. Recopilar estáticos
 python manage.py collectstatic --no-input
 
-# 5. Aplicar migraciones automáticamente en producción
-python manage.py migrate
+# 5. Aplicar migraciones (Esto creará automáticamente el archivo db.sqlite3 si no existe)
+python manage.py migrate --no-input
 
-# 6. (Opcional) Poblar la base de datos automáticamente si está vacía
-python manage.py poblar_portfolio
+# 6. Poblar la base de datos con los datos de prueba
+python manage.py poblar_portfolio --no-input
