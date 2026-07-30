@@ -2,8 +2,8 @@
     {% for proyecto in proyectos %}
         {% include "components/_tarjeta_proyecto.html" with proyecto=proyecto %}
     {% empty %}
-        <div class="col-span-2 text-center py-12 bg-white rounded-2xl border border-slate-200">
-            <p class="text-slate-500">No hay proyectos que coincidan con esta tecnología.</p>
+        <div class="col-span-2 text-center py-12 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 transition-colors">
+            <p class="text-slate-500 dark:text-slate-400">No hay proyectos que coincidan con esta tecnología.</p>
         </div>
     {% endfor %}
 </div>

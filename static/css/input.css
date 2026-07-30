@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Forzar modo oscuro basado en la clase .dark en lugar de solo la preferencia del sistema */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Rutas relativas desde este archivo CSS hacia los HTML de Django */
 @source "../../templates/**/*.html";
 @source "../../portfolio/templates/**/*.html";

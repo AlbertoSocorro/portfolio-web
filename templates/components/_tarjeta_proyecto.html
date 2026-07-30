@@ -1,19 +1,19 @@
-<article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+<article class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
     {% if proyecto.imagen_portada %}
-        <div class="h-48 overflow-hidden bg-slate-100">
+        <div class="h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
             <img src="{{ proyecto.imagen_portada.url }}" alt="{{ proyecto.titulo }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
         </div>
     {% endif %}
     
     <div class="p-6 flex-1 flex flex-col justify-between">
         <div>
-            <h3 class="text-xl font-bold text-slate-900 tracking-tight">{{ proyecto.titulo }}</h3>
-            <p class="mt-2 text-sm text-slate-600 leading-relaxed">{{ proyecto.descripcion_corta }}</p>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">{{ proyecto.titulo }}</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ proyecto.descripcion_corta }}</p>
             
             <!-- Tecnologías asociadas -->
             <div class="mt-4 flex flex-wrap gap-1.5">
                 {% for tech in proyecto.tecnologias.all %}
-                    <span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-md">
+                    <span class="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-md">
                         {{ tech.nombre }}
                     </span>
                 {% endfor %}
@@ -21,14 +21,14 @@
         </div>
 
         <!-- Enlaces externos -->
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
             {% if proyecto.repositorio_url %}
-                <a href="{{ proyecto.repositorio_url }}" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+                <a href="{{ proyecto.repositorio_url }}" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                     GitHub &rarr;
                 </a>
             {% endif %}
             {% if proyecto.demo_url %}
-                <a href="{{ proyecto.demo_url }}" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors">
+                <a href="{{ proyecto.demo_url }}" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
                     Ver Demo &rarr;
                 </a>
             {% endif %}

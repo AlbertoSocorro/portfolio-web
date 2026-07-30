@@ -10,21 +10,29 @@
       "Courier New", monospace;
     --color-emerald-50: oklch(97.9% 0.021 166.113);
     --color-emerald-200: oklch(90.5% 0.093 164.15);
+    --color-emerald-300: oklch(84.5% 0.143 164.978);
+    --color-emerald-400: oklch(76.5% 0.177 163.223);
     --color-emerald-600: oklch(59.6% 0.145 163.225);
     --color-emerald-800: oklch(43.2% 0.095 166.913);
+    --color-emerald-950: oklch(26.2% 0.051 172.552);
     --color-indigo-50: oklch(96.2% 0.018 272.314);
+    --color-indigo-300: oklch(78.5% 0.115 274.713);
+    --color-indigo-400: oklch(67.3% 0.182 276.935);
     --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-indigo-600: oklch(51.1% 0.262 276.966);
     --color-indigo-700: oklch(45.7% 0.24 277.023);
+    --color-indigo-950: oklch(25.7% 0.09 281.288);
     --color-slate-50: oklch(98.4% 0.003 247.858);
     --color-slate-100: oklch(96.8% 0.007 247.896);
     --color-slate-200: oklch(92.9% 0.013 255.508);
     --color-slate-300: oklch(86.9% 0.022 252.894);
+    --color-slate-400: oklch(70.4% 0.04 256.788);
     --color-slate-500: oklch(55.4% 0.046 257.417);
     --color-slate-600: oklch(44.6% 0.043 257.281);
     --color-slate-700: oklch(37.2% 0.044 257.287);
     --color-slate-800: oklch(27.9% 0.041 260.031);
     --color-slate-900: oklch(20.8% 0.042 265.755);
+    --color-slate-950: oklch(12.9% 0.042 264.695);
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-xl: 36rem;
@@ -321,6 +329,9 @@
   .justify-between {
     justify-content: space-between;
   }
+  .justify-center {
+    justify-content: center;
+  }
   .gap-1 {
     gap: var(--spacing);
   }
@@ -428,6 +439,9 @@
   }
   .object-cover {
     object-fit: cover;
+  }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
   }
   .p-6 {
     padding: calc(var(--spacing) * 6);
@@ -690,6 +704,92 @@
   @media (width >= 64rem) {
     .lg\:px-8 {
       padding-inline: calc(var(--spacing) * 8);
+    }
+  }
+  .dark\:border-emerald-800:where(.dark, .dark *) {
+    border-color: var(--color-emerald-800);
+  }
+  .dark\:border-slate-700:where(.dark, .dark *) {
+    border-color: var(--color-slate-700);
+  }
+  .dark\:border-slate-800:where(.dark, .dark *) {
+    border-color: var(--color-slate-800);
+  }
+  .dark\:bg-emerald-950\/40:where(.dark, .dark *) {
+    background-color: color-mix(in srgb, oklch(26.2% 0.051 172.552) 40%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-emerald-950) 40%, transparent);
+    }
+  }
+  .dark\:bg-indigo-500:where(.dark, .dark *) {
+    background-color: var(--color-indigo-500);
+  }
+  .dark\:bg-indigo-600:where(.dark, .dark *) {
+    background-color: var(--color-indigo-600);
+  }
+  .dark\:bg-indigo-950\/50:where(.dark, .dark *) {
+    background-color: color-mix(in srgb, oklch(25.7% 0.09 281.288) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-indigo-950) 50%, transparent);
+    }
+  }
+  .dark\:bg-slate-800:where(.dark, .dark *) {
+    background-color: var(--color-slate-800);
+  }
+  .dark\:bg-slate-900:where(.dark, .dark *) {
+    background-color: var(--color-slate-900);
+  }
+  .dark\:bg-slate-900\/80:where(.dark, .dark *) {
+    background-color: color-mix(in srgb, oklch(20.8% 0.042 265.755) 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-slate-900) 80%, transparent);
+    }
+  }
+  .dark\:bg-slate-950:where(.dark, .dark *) {
+    background-color: var(--color-slate-950);
+  }
+  .dark\:text-emerald-300:where(.dark, .dark *) {
+    color: var(--color-emerald-300);
+  }
+  .dark\:text-emerald-400:where(.dark, .dark *) {
+    color: var(--color-emerald-400);
+  }
+  .dark\:text-indigo-300:where(.dark, .dark *) {
+    color: var(--color-indigo-300);
+  }
+  .dark\:text-indigo-400:where(.dark, .dark *) {
+    color: var(--color-indigo-400);
+  }
+  .dark\:text-slate-100:where(.dark, .dark *) {
+    color: var(--color-slate-100);
+  }
+  .dark\:text-slate-200:where(.dark, .dark *) {
+    color: var(--color-slate-200);
+  }
+  .dark\:text-slate-300:where(.dark, .dark *) {
+    color: var(--color-slate-300);
+  }
+  .dark\:text-slate-400:where(.dark, .dark *) {
+    color: var(--color-slate-400);
+  }
+  .dark\:text-white:where(.dark, .dark *) {
+    color: var(--color-white);
+  }
+  @media (hover: hover) {
+    .dark\:hover\:bg-indigo-600:where(.dark, .dark *):hover {
+      background-color: var(--color-indigo-600);
+    }
+    .dark\:hover\:bg-indigo-700:where(.dark, .dark *):hover {
+      background-color: var(--color-indigo-700);
+    }
+    .dark\:hover\:bg-slate-800:where(.dark, .dark *):hover {
+      background-color: var(--color-slate-800);
+    }
+    .dark\:hover\:text-indigo-300:where(.dark, .dark *):hover {
+      color: var(--color-indigo-300);
+    }
+    .dark\:hover\:text-indigo-400:where(.dark, .dark *):hover {
+      color: var(--color-indigo-400);
     }
   }
 }
