@@ -9,10 +9,28 @@
     <!-- Enlace al archivo CSS compilado por Tailwind v4 -->
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
 
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     <!-- HTMX CDN -->
     <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+
+    <!-- Script anti-parpadeo y carga inicial del tema (ejecución temprana en el head) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white transition-colors">
     
     <!-- Incluir la barra de navegación modular -->
     {% include "components/_navbar.html" %}
@@ -25,6 +43,39 @@
 
     <!-- Incluir el pie de página modular -->
     {% include "components/_footer.html" %}
+
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const root = document.documentElement;
+        
+        // Función para actualizar el icono según el estado actual
+        function updateIcon(isDark) {
+            if (themeIcon) {
+                themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            }
+        }
+    
+        // Sincronizar el icono al cargar la página
+        updateIcon(root.classList.contains('dark'));
+    
+        // Evento al hacer clic en el botón para alternar el tema
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const isCurrentlyDark = root.classList.contains('dark');
+                
+                if (isCurrentlyDark) {
+                    root.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    updateIcon(false);
+                } else {
+                    root.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    updateIcon(true);
+                }
+            });
+        }
+    </script>
 
     <!-- Script de recarga automática para desarrollo -->
     {% load django_browser_reload %}
