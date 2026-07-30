@@ -13,4 +13,6 @@ npm run dev:css & # O un script de compilación única si lo prefieres, pero par
 python manage.py collectstatic --no-input
 
 # 4. Aplicar migraciones a la base de datos
+python manage.py makemigrations
 python manage.py migrate
+python manage.py poblar_portfolio
