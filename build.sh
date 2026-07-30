@@ -12,10 +12,10 @@ npm run build:css
 mkdir -p staticfiles
 
 # 4. Recopilar estáticos
-python manage.py collectstatic --no-input
+python manage.py collectstatic
 
 # 5. Aplicar migraciones (Esto creará automáticamente el archivo db.sqlite3 si no existe)
-python manage.py migrate --no-input
+python manage.py migrate
 
 # 6. Poblar la base de datos con los datos de prueba
-python manage.py poblar_portfolio --no-input
+python manage.py poblar_portfolio
