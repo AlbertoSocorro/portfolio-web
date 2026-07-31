@@ -21,4 +21,4 @@ python manage.py migrate
 python manage.py poblar_portfolio
 
 # 7. Crear un superusuario para administrar la página
-python manage.py createsuperuser --username alsoc --email alsocorrogallardo@gmail.com
+DJANGO_SUPERUSER_PASSWORD="alsocpassword" python manage.py createsuperuser --username alsoc --email alsocorrogallardo@gmail.com --no-input
