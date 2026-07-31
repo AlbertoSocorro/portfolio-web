@@ -19,3 +19,6 @@ python manage.py migrate
 
 # 6. Poblar la base de datos con los datos de prueba
 python manage.py poblar_portfolio
+
+# 7. Crear un superusuario para administrar la página
+python manage.py createsuperuser --username alsoc --email alsocorrogallardo@gmail.com
